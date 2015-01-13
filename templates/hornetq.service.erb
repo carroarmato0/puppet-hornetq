@@ -25,38 +25,38 @@ if [ `id -u` -ne 0 ]; then
 fi
 
 case "$1" in
-	start)
-	    printf "%-50s" "Starting $NAME..."
+  start)
+      printf "%-50s" "Starting $NAME..."
             echo $PID > $PIDFILE
-	    printf "%s\n" "Ok"
-	    cd $DAEMON_PATH
+      printf "%s\n" "Ok"
+      cd $DAEMON_PATH
             ./run.sh <%= scope.lookupvar('hornetq::basedir') %>/config/stand-alone/<%= scope.lookupvar('hornetq::configuration') %> &
-	;;
-	status)
+  ;;
+  status)
             printf "%-50s" "Checking $NAME..."
-	    if [ -f $PIDFILE ]; then
-	        echo "Running"
-	    else
-	        printf "%s\n" "Service not running"
-	    fi
+      if [ -f $PIDFILE ]; then
+          echo "Running"
+      else
+          printf "%s\n" "Service not running"
+      fi
         ;;
-	stop)
-	    printf "%-50s" "Stopping $NAME"
-       	    cd $DAEMON_PATH
-	    if [ -f $PIDFILE ]; then
-	        ./stop.sh <%= scope.lookupvar('hornetq::basedir') %>/config/stand-alone/<%= scope.lookupvar('hornetq::configuration') %> &
-	        printf "%s\n" "Ok"
-	        rm -f $PIDFILE
-	    else
-	        printf "%s\n" "pidfile not found"
-	    fi
-	;;
+  stop)
+      printf "%-50s" "Stopping $NAME"
+            cd $DAEMON_PATH
+      if [ -f $PIDFILE ]; then
+          ./stop.sh <%= scope.lookupvar('hornetq::basedir') %>/config/stand-alone/<%= scope.lookupvar('hornetq::configuration') %> &
+          printf "%s\n" "Ok"
+          rm -f $PIDFILE
+      else
+          printf "%s\n" "pidfile not found"
+      fi
+  ;;
         restart)
-	    $0 stop
-	    $0 start
-	;;
+      $0 stop
+      $0 start
+  ;;
 
-	*)
-	    echo "Usage: $0 {status|start|stop|restart}"
-	    exit 1
+  *)
+      echo "Usage: $0 {status|start|stop|restart}"
+      exit 1
 esac
