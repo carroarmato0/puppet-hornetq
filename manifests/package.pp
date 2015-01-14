@@ -9,7 +9,7 @@ class hornetq::package {
   }
 
   package { 'hornetq':
-    ensure => installed,
+    ensure => $hornetq::version,
   }
 
 }
