@@ -36,8 +36,10 @@ case "$1" in
             printf "%-50s" "Checking $NAME..."
       if [ -f $PIDFILE ]; then
           echo "Running"
+          exit 0
       else
           printf "%s\n" "Service not running"
+          exit 1
       fi
         ;;
   stop)
