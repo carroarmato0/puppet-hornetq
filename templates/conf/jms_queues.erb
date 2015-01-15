@@ -1,0 +1,6 @@
+<% @jms_queues.each do |queue| -%>
+  <queue name="<%= queue['name'] %>">
+    <entry name="<%= queue['entry'] %>"/>
+  </queue>
+<% end -%>
+

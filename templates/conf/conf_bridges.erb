@@ -1,0 +1,16 @@
+  <bridges>
+<% @bridges.each do |bridge| -%>
+    <bridge name="<%= bridge['name'] %>">
+      <queue-name><%= bridge['queue-name'] %></queue-name>
+      <forwarding-address><%= bridge['forwarding-address'] %></forwarding-address>
+<% if bridge['static-connectors'] != nil -%>
+      <static-connectors>
+<% bridge['static-connectors'].each do |connector| -%>
+        <connector-ref><%= connector %></connector-ref>
+<% end -%>
+      </static-connectors>
+<% end -%>
+    </bridge>
+<% end -%>
+  </bridges>
+

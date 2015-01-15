@@ -1,0 +1,15 @@
+<!--
+  Managed by Puppet
+-->
+
+<configuration xmlns="urn:hornetq"
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xsi:schemaLocation="urn:hornetq /schema/hornetq-configuration.xsd">
+
+  <paging-directory>${data.dir:../data}/paging</paging-directory>
+  <bindings-directory>${data.dir:../data}/bindings</bindings-directory>
+  <journal-directory>${data.dir:../data}/journal</journal-directory>
+  <large-messages-directory>${data.dir:../data}/large-messages</large-messages-directory>
+
+  <journal-min-files>10</journal-min-files>
+

@@ -1,0 +1,11 @@
+  <broadcast-groups>
+<% @broadcast_groups.each do |broadcast_group| -%>
+    <broadcast-group name="<%= broadcast_group['name'] %>">
+      <group-address><%= broadcast_group['address'] %></group-address>
+      <group-port><%= broadcast_group['port'] %></group-port>
+      <broadcast-period><%= broadcast_group['period'] %></broadcast-period>
+      <connector-ref><%= broadcast_group['connector-ref'] %></connector-ref>
+    </broadcast-group>
+<% end -%>
+  </broadcast-groups>
+

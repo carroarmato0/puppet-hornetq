@@ -32,6 +32,15 @@ class hornetq::config {
     group  => $hornetq::group,
   }
 
+  file { "${hornetq::basedir}/config/stand-alone/puppet":
+    ensure  => directory,
+    owner   => $hornetq::user,
+    group   => $hornetq::group,
+    purge   => true,
+    recurse => true,
+    force   => true,
+  }
+
   file { $hornetq::datadir:
     ensure => directory,
     owner  => $hornetq::user,
@@ -47,9 +56,10 @@ class hornetq::config {
   if $hornetq::backup {
     # Only backup if there is actual data in the data directory
     exec { 'Backup Data':
-      command     => "[ \"$(ls -A ${hornetq::datadir})\" ] && tar -zcvf ${hornetq::backupdir}/data-`date +%F-%T`.tar.gz ${hornetq::datadir}",
+      command     => "tar -zcvf ${hornetq::backupdir}/data-`date +%F-%T`.tar.gz ${hornetq::datadir}",
       path        => '/usr/bin:/usr/sbin:/bin:/usr/local/bin',
       subscribe   => Package['hornetq'],
+      onlyif      => "ls -A ${hornetq::datadir}",
       refreshonly => true,
     }
   }

@@ -1,0 +1,11 @@
+  <cluster-connections>
+<% @cluster_connections.each do |connection| -%>
+    <cluster-connection name="<%= connection['name'] %>">
+      <address><%= connection['address'] %></address>
+      <connector-ref><%= connection['connector-ref'] %></connector-ref>
+      <forward-when-no-consumers><%= connection['forward-when-no-consumers'] %></forward-when-no-consumers>
+      <discovery-group-ref discovery-group-name="<%= connection['discovery-group'] %>"/>
+    </cluster-connection>
+<% end -%>
+  </cluster-connections>
+

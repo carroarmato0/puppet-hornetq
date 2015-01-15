@@ -11,7 +11,7 @@ class hornetq::params {
   $logdir        = '/var/log/hornetq'
   $log_level     = 'DEBUG'
   $version       = 'latest'
-  $configuration = 'non-clustered'
+  $configuration = 'puppet'
   $backup        = false
 
 }

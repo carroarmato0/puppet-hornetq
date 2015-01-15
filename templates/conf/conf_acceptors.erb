@@ -1,0 +1,13 @@
+  <acceptors>
+<% @acceptors.each do |acceptor| -%>
+    <acceptor name="<%=  acceptor['name'] %>">
+      <factory-class>org.hornetq.core.remoting.impl.netty.NettyAcceptorFactory</factory-class>
+<% if  acceptor['params'] != nil -%>
+<%  acceptor['params'].each_pair do |param_key, param_value| -%>
+      <param key="<%= param_key %>" value="<%= param_value %>"/>
+<% end -%>
+<% end -%>
+    </acceptor>
+<% end -%>
+  </acceptors>
+

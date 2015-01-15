@@ -1,0 +1,10 @@
+  <discovery-groups>
+<% @discovery_groups.each do |discovery_group| -%>
+    <discovery-group name="<%= discovery_group['name'] %>">
+      <group-address><%= discovery_group['address'] %></group-address>
+      <group-port><%= discovery_group['port'] %></group-port>
+      <refresh-timeout><%= discovery_group['timeout'] %></refresh-timeout>
+    </discovery-group>
+<% end -%>
+  </discovery-groups>
+

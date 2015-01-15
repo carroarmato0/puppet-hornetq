@@ -1,0 +1,12 @@
+  <security-settings>
+<% @security_settings.each do |setting| -%>
+    <security-setting match="<%= setting['match'] %>">
+<% if  setting['permissions'] != nil -%>
+<%  setting['permissions'].each do |permission| -%>
+      <permission type="<%= permission['type'] %>" roles="<%= permission['roles'] %>"/>
+<% end -%>
+<% end -%>
+    </security-setting>
+<% end -%>
+  </security-settings>
+

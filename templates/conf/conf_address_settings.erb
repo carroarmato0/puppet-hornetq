@@ -1,0 +1,16 @@
+  <address-settings>
+<% @address_settings.each do |setting| -%>
+    <address-setting match="<%= setting['match'] %>">
+      <redelivery-delay><%= setting['redelivery-delay'] %></redelivery-delay>
+      <max-delivery-attempts><%= setting['max-delivery-attempts'] %></max-delivery-attempts>
+      <dead-letter-address><%= setting['dead-letter-address'] %></dead-letter-address>
+      <expiry-address><%= setting['expiry-address'] %></expiry-address>
+      <message-counter-history-day-limit><%= setting['message-counter-history-day-limit'] %></message-counter-history-day-limit>
+      <max-size-bytes><%= setting['max-size-bytes'] %></max-size-bytes>
+      <page-size-bytes><%= setting['page-size-bytes'] %></page-size-bytes>
+      <address-full-policy><%= setting['address-full-policy'] %></address-full-policy>
+      <redistribution-delay><%= setting['redistribution-delay'] %></redistribution-delay>
+    </address-setting>
+<% end -%>
+  </address-settings>
+

@@ -1,0 +1,22 @@
+<% @connection_factories.each do |factory| -%>
+  <connection-factory name="<%= factory['name'] %>">
+<% if factory['xa'] != nil -%>
+    <xa><%= factory['xa'] %></xa>
+<% end -%>
+<% if factory['connectors'] != nil -%>
+    <connectors>
+<% factory['connectors'].each do |connector| -%>
+      <connector-ref connector-name="<%= connector %>"/>
+<% end -%>
+    </connectors>
+<% end -%>
+<% if factory['entries'] != nil -%>
+    <entries>
+<% factory['entries'].each do |entry| -%>
+      <entry name="<%= entry %>"/>
+<% end -%>
+    </entries>
+<% end -%>
+  </connection-factory>
+<% end -%>
+

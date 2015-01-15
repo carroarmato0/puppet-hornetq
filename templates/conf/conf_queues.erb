@@ -1,0 +1,8 @@
+  <queues>
+<% @queues.each do |queue| -%>
+    <queue name="<%= queue['name'] %>">
+       <address><%= queue['address'] %></address>
+    </queue>
+<% end -%>
+  </queues>
+
