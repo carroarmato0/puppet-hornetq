@@ -6,12 +6,14 @@
 # $basedir        Installation directory of Hornetq
 # $datadir        Location where the persistent data is kept
 # $confdir        Location where the configurations are stored
-# $version        Manage version of the package
-# $log            Location of the log file
+# $logdir         Location where the hornetq.log file will be placed
 # $log_level      Set the log level in the log file
+# $version        Manage version of the package
 # $backup         Perform a copy of the data upon AUTOMATED version/package change [true|false (default)]
 # $backupdir      Location where the backup of the data will be placed (same directory by default)
 # $configuration  Folder name within the confdir containing the actual configuration xml's (default is 'puppet' which is fully managed)
+# $java_xms       Set Java's initial memory allocation pool
+# $java_xmx       Set Java's maximum memory allocation pool
 class hornetq (
   $service       = $hornetq::params::service,
   $user          = $hornetq::params::user,
@@ -19,12 +21,14 @@ class hornetq (
   $basedir       = $hornetq::params::basedir,
   $datadir       = $hornetq::params::datadir,
   $confdir       = $hornetq::params::confdir,
-  $version       = $hornetq::params::version,
-  $log           = $hornetq::params::logdir,
+  $logdir        = $hornetq::params::logdir,
   $log_level     = $hornetq::params::log_level,
+  $version       = $hornetq::params::version,
   $backup        = $hornetq::params::backup,
   $backupdir     = $hornetq::params::backupdir,
   $configuration = $hornetq::params::configuration,
+  $java_xms      = $hornetq::params::java_xms,
+  $java_xmx      = $hornetq::params::java_xmx,
 ) inherits hornetq::params {
 
   include hornetq::package

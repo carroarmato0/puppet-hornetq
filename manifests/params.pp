@@ -13,5 +13,7 @@ class hornetq::params {
   $version       = 'latest'
   $configuration = 'puppet'
   $backup        = false
+  $java_xms      = '512M'
+  $java_xmx      = '1024M'
 
 }

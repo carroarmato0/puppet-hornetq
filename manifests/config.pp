@@ -16,8 +16,8 @@ class hornetq::config {
   file { '/etc/init.d/hornetq':
     ensure    => file,
     mode      => '0755',
-    content   => template('hornetq/hornetq.service.erb'),
-    notify    => Service['hornetq'],
+    content   => template('hornetq/hornetq.service2.erb'),
+    notify    => [Exec['stop hornetq'],Service['hornetq']],
   }
 
   file { $hornetq::basedir:
@@ -32,13 +32,22 @@ class hornetq::config {
     group  => $hornetq::group,
   }
 
-  file { "${hornetq::basedir}/config/stand-alone/puppet":
+  file { "${hornetq::basedir}/config/stand-alone/${hornetq::configuration}":
     ensure  => directory,
     owner   => $hornetq::user,
     group   => $hornetq::group,
-    purge   => true,
-    recurse => true,
-    force   => true,
+  }
+
+  exec { 'stop hornetq':
+    command     => 'service hornetq stop',
+    path        => '/usr/bin:/usr/sbin:/bin:/usr/local/bin:/sbin',
+    refreshonly => true,
+  }
+
+  file { $hornetq::logdir:
+    ensure => directory,
+    owner  => $hornetq::user,
+    group  => $hornetq::group,
   }
 
   file { $hornetq::datadir:

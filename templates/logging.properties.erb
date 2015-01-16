@@ -20,7 +20,7 @@
 handlers=java.util.logging.FileHandler
 
 java.util.logging.FileHandler.level=<%= scope.lookupvar('hornetq::log_level') %>
-java.util.logging.FileHandler.pattern=<%= scope.lookupvar('hornetq::log') %>
+java.util.logging.FileHandler.pattern=<%= scope.lookupvar('hornetq::logdir') %>/hornetq.log
 java.util.logging.FileHandler.formatter=org.hornetq.integration.logging.HornetQLoggerFormatter
 # Default global logging level.
 # This specifies which kinds of events are logged across
