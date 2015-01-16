@@ -3,7 +3,7 @@
     <connector name="<%= connector['name'] %>">
       <factory-class>org.hornetq.core.remoting.impl.netty.NettyConnectorFactory</factory-class>
 <% if connector['params'] != nil -%>
-<% connector['params'].each_pair do |param_key, param_value| -%>
+<% connector['params'].sort.each do |param_key, param_value| -%>
       <param key="<%= param_key %>" value="<%= param_value %>"/>
 <% end -%>
 <% end -%>
