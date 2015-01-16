@@ -1,9 +1,9 @@
 class hornetq::config {
 
   user { 'hornetq':
+    ensure  => present,
     comment => 'hornetq user',
     home    => '/opt/hornetq',
-    ensure  => present,
     system  => true,
   }
 
@@ -22,8 +22,8 @@ class hornetq::config {
 
   file { $hornetq::basedir:
     ensure => directory,
-     owner  => $hornetq::user,
-     group  => $hornetq::group,
+    owner  => $hornetq::user,
+    group  => $hornetq::group,
   }
 
   file { "${hornetq::basedir}/config":

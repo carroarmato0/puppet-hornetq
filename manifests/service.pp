@@ -1,8 +1,8 @@
 class hornetq::service {
 
   service { 'hornetq':
-    enable      => true,
     ensure      => $hornetq::service,
+    enable      => true,
     hasrestart  => true,
     hasstatus   => true,
     subscribe   => Package['hornetq'],
