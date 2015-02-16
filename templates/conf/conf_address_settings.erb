@@ -9,7 +9,9 @@
       <max-size-bytes><%= setting['max-size-bytes'] %></max-size-bytes>
       <page-size-bytes><%= setting['page-size-bytes'] %></page-size-bytes>
       <address-full-policy><%= setting['address-full-policy'] %></address-full-policy>
+      <% if  setting['redistribution-delay'] != nil -%>
       <redistribution-delay><%= setting['redistribution-delay'] %></redistribution-delay>
+      <% end -%>
     </address-setting>
 <% end -%>
   </address-settings>
