@@ -9,7 +9,7 @@ class hornetq::params {
   $backupdir     = $basedir
   $confdir       = '/opt/hornetq/config'
   $logdir        = '/var/log/hornetq'
-  $log_level     = 'DEBUG'
+  $log_level     = 'INFO'
   $version       = 'latest'
   $configuration = 'puppet'
   $backup        = false

@@ -17,6 +17,7 @@ service=`basename "$0"`
 export HORNETQ_HOME=${HORNETQ_HOME:-<%= scope.lookupvar('hornetq::basedir') %>}
 HORNETQ_CONFIG_DIR=${HORNETQ_CONFIG_DIR:-<%= scope.lookupvar('hornetq::basedir') %>/config/stand-alone/<%= scope.lookupvar('hornetq::configuration') %>}
 HORNETQ_DATA_DIR=${HORNETQ_DATA_DIR:-<%= scope.lookupvar('hornetq::datadir') %>}
+JAVA_EXTRA_ARGS="<%= scope.lookupvar('hornetq::java_extra_args') %>"
 
 if [ -f "${HORNETQ_BASE}/etc/hornetq.profile" ] ; then
   . "${HORNETQ_BASE}/etc/hornetq.profile"
@@ -57,7 +58,7 @@ start() {
     CLASSPATH=$i:$CLASSPATH
   done
 
-  export HORNETQ_JVM_ARGS=${HORNETQ_JVM_ARGS:-"-XX:+UseParallelGC -XX:+AggressiveOpts -XX:+UseFastAccessorMethods -Xms<%= scope.lookupvar('hornetq::java_xms') %> -Xmx<%= scope.lookupvar('hornetq::java_xmx') %> -Dhornetq.config.dir=$HORNETQ_CONFIG_DIR -Djava.util.logging.config.file=$HORNETQ_CONFIG_DIR/logging.properties -Djava.library.path=/usr/share/hornetq/libaio -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=3000 -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false -Ddata.dir=$HORNETQ_DATA_DIR"}
+  export HORNETQ_JVM_ARGS=${HORNETQ_JVM_ARGS:-"-XX:+UseParallelGC -XX:+AggressiveOpts -XX:+UseFastAccessorMethods -Xms<%= scope.lookupvar('hornetq::java_xms') %> -Xmx<%= scope.lookupvar('hornetq::java_xmx') %> $JAVA_EXTRA_ARGS -Dhornetq.config.dir=$HORNETQ_CONFIG_DIR -Djava.util.logging.config.file=$HORNETQ_CONFIG_DIR/logging.properties -Djava.library.path=/usr/share/hornetq/libaio -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=3000 -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false -Ddata.dir=$HORNETQ_DATA_DIR"}
 
   if [ `id -u` = `id -u $HORNETQ_USER` ] ; then
     nohup java $HORNETQ_JVM_ARGS -classpath $CLASSPATH -Dcom.sun.management.jmxremote org.hornetq.integration.bootstrap.HornetQBootstrapServer $FILENAME > /dev/null 2>&1 &
