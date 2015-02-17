@@ -30,7 +30,7 @@ class hornetq (
   $configuration    = $hornetq::params::configuration,
   $java_xms         = $hornetq::params::java_xms,
   $java_xmx         = $hornetq::params::java_xmx,
-  $java_extra_args  = undef,
+  $java_extra_args  = '',
 ) inherits hornetq::params {
 
   include hornetq::package
